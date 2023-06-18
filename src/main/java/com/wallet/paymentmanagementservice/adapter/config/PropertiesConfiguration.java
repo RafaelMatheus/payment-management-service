@@ -7,6 +7,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PropertiesConfiguration {
     private TransactionTypeConfig payment;
+    private TransactionTypeConfig transaction;
+
+    public TransactionTypeConfig getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(TransactionTypeConfig transaction) {
+        this.transaction = transaction;
+    }
 
     public TransactionTypeConfig getPayment() {
         return payment;
