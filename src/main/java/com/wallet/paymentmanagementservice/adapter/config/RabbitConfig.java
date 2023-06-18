@@ -1,4 +1,4 @@
-package com.wallet.transactionmanagementservice.adapter.config;
+package com.wallet.paymentmanagementservice.adapter.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -15,39 +15,39 @@ public class RabbitConfig {
 
     @Bean
     public DirectExchange exchange() {
-        return ExchangeBuilder.directExchange(env.getTransaction().getRabbit().getExchangeName())
+        return ExchangeBuilder.directExchange(env.getPayment().getRabbit().getExchangeName())
                 .build();
     }
 
     @Bean
     public DirectExchange deadLetterExchange() {
         return ExchangeBuilder
-                .directExchange(env.getTransaction().getRabbit().getDeadLetterExchange())
+                .directExchange(env.getPayment().getRabbit().getDeadLetterExchange())
                 .build();
     }
 
     @Bean
     public Queue transactionQueue() {
-        return QueueBuilder.durable(env.getTransaction().getRabbit().getQueueName())
-                .deadLetterExchange(env.getTransaction().getRabbit().getDeadLetterExchange())
-                .deadLetterRoutingKey(env.getTransaction().getRabbit().getDeadLetterRoutingKey())
+        return QueueBuilder.durable(env.getPayment().getRabbit().getQueueName())
+                .deadLetterExchange(env.getPayment().getRabbit().getDeadLetterExchange())
+                .deadLetterRoutingKey(env.getPayment().getRabbit().getDeadLetterRoutingKey())
                 .build();
     }
 
     @Bean
     public Queue deadLetterQueue() {
-        return QueueBuilder.durable(env.getTransaction().getRabbit().getDeadLetterQueueName())
+        return QueueBuilder.durable(env.getPayment().getRabbit().getDeadLetterQueueName())
                 .build();
     }
 
     @Bean
     public Binding DLQbinding() {
-        return BindingBuilder.bind(deadLetterQueue()).to(deadLetterExchange()).with(env.getTransaction().getRabbit().getDeadLetterRoutingKey());
+        return BindingBuilder.bind(deadLetterQueue()).to(deadLetterExchange()).with(env.getPayment().getRabbit().getDeadLetterRoutingKey());
     }
 
     @Bean
     public Binding binding() {
-        return BindingBuilder.bind(transactionQueue()).to(exchange()).with(env.getTransaction().getRabbit().getRoutingKey());
+        return BindingBuilder.bind(transactionQueue()).to(exchange()).with(env.getPayment().getRabbit().getRoutingKey());
     }
 
 

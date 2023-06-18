@@ -1,4 +1,4 @@
-package com.wallet.transactionmanagementservice.adapter.config;
+package com.wallet.paymentmanagementservice.adapter.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -6,14 +6,14 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties
 @Configuration
 public class PropertiesConfiguration {
-    private TransactionTypeConfig transaction;
+    private TransactionTypeConfig payment;
 
-    public TransactionTypeConfig getTransaction() {
-        return transaction;
+    public TransactionTypeConfig getPayment() {
+        return payment;
     }
 
-    public void setTransaction(TransactionTypeConfig transaction) {
-        this.transaction = transaction;
+    public void setPayment(TransactionTypeConfig payment) {
+        this.payment = payment;
     }
 
     public static class TransactionTypeConfig {

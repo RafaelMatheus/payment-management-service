@@ -1,4 +1,4 @@
-package com.wallet.transactionmanagementservice;
+package com.wallet.paymentmanagementservice;
 
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableRabbit
-public class TransactionManagementServiceApplication {
+public class PaymentManagementServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TransactionManagementServiceApplication.class, args);
+		SpringApplication.run(PaymentManagementServiceApplication.class, args);
 	}
 
 }
