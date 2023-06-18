@@ -1,19 +1,16 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017
-      database: transaction-management
-  mvc:
-    pathmatch:
-      matching-strategy: ant-path-matcher
+      uri: ${DB_URI:mongodb://localhost:27017}
+      database: payment-management
   rabbitmq:
-    host: localhost
+    host: ${RABBIT_HOST:localhost}
     port: 5672
     username: guest
     password: guest
     virtual-host: b2b
 server:
-  port: 8082
+  port: 8083
 
 transaction:
   rabbit:
