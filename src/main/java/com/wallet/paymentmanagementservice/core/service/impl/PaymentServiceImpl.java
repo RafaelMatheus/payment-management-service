@@ -16,7 +16,7 @@ import org.springframework.amqp.core.MessageBuilder;
 import org.springframework.amqp.core.MessagePropertiesBuilder;
 
 public class PaymentServiceImpl implements PaymentService {
-    private final Logger LOG = LoggerFactory.getLogger(PaymentServiceImpl.class);
+    private final Logger log = LoggerFactory.getLogger(PaymentServiceImpl.class);
 
     private final RabbitMqPort rabbitMqPort;
     private final PaymentPort repositoryPort;
@@ -30,13 +30,14 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public void processPayment(PaymentDomain paymentDomain) {
-        LOG.info("m=processPayment");
+        log.info("m=processPayment");
         try {
             var message = toPaymentRabbitMqDomain(paymentDomain);
             rabbitMqPort.send(renderMensagemFila(message), propertiesConfiguration.getTransaction().getRabbit().getRoutingKey(),
                     propertiesConfiguration.getTransaction().getRabbit().getExchangeName());
             repositoryPort.save(paymentDomain);
         } catch (JsonProcessingException e) {
+            log.error("m=processPayment", e);
             throw new RuntimeException(e);
         }
     }
