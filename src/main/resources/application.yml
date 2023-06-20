@@ -1,16 +1,16 @@
 spring:
   data:
     mongodb:
-      uri: ${DB_URI:mongodb://localhost:27017}
+      uri: mongodb://localhost:27017
       database: payment-management
   rabbitmq:
-    host: ${RABBIT_HOST:localhost}
+    host: localhost
     port: 5672
     username: guest
     password: guest
     virtual-host: b2b
 server:
-  port: 8083
+  port: 8082
 
 transaction:
   rabbit:
