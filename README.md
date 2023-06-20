@@ -35,5 +35,5 @@ Para construir o microserviço Payment, siga as etapas abaixo:
   ```
 
   ```bash
-   docker build -t payment-service .
+   docker build -t payment-management .
   ```
